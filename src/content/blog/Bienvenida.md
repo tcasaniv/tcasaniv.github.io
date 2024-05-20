@@ -1,7 +1,7 @@
 ---
 id: "Bienvenida"
 title: "Bienvenidos a tcasaniv.github.io"
-topics: []
+categories: []
 authors:
   - tcasaniv
 description: "Primer post del blog"

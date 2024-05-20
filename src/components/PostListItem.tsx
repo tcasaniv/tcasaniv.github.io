@@ -2,8 +2,8 @@ import type { CollectionEntry } from "astro:content";
 
 export const PostListItem = ({ post }: { post: CollectionEntry<"blog"> }) => {
   const { data, slug } = post;
-  const { title, description, pubDate, authors, topics } = data;
-  const topicsList = topics.length > 0 ? topics.join(", ") : "sin categoría";
+  const { title, description, pubDate, authors, categories } = data;
+  const categoriesList = categories.length > 0 ? categories.join(", ") : "sin categoría";
   return (
     <div class="post flex flex-col">
       <h2 class="mb-0.5 mt-0 text-xl">
@@ -27,7 +27,7 @@ export const PostListItem = ({ post }: { post: CollectionEntry<"blog"> }) => {
             })}
           </time>
         </span>
-        <p class="m-0">Temas: {topicsList}</p>
+        <p class="m-0">Categorías: {categoriesList}</p>
       </div>
     </div>
   );

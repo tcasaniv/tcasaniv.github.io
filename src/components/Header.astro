@@ -8,7 +8,7 @@ import DarkModeToggle from "./DarkModeToggle.astro";
 type Props = {
   slug: string;
 };
-const topics = await getCollection("topic");
+const categories = await getCollection("categorie");
 ---
 
 <header
@@ -74,11 +74,11 @@ const topics = await getCollection("topic");
 
           <!-- <HeaderLink href="/authors">Autores</HeaderLink> -->
           
-          <HeaderDropdown href="/topics" linkText="Temas">
+          <HeaderDropdown href="/categories" linkText="Categorías">
             {
-              topics.map((topic) => (
-                <HeaderDropdownLink href={`/topics/${topic.slug}`}>
-                  {topic.data.title}
+              categories.map((categorie) => (
+                <HeaderDropdownLink href={`/categories/${categorie.slug}`}>
+                  {categorie.data.title}
                 </HeaderDropdownLink>
               ))
             }

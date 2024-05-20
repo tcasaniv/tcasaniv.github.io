@@ -1,7 +1,7 @@
 ---
 id: "third-post"
 title: "Third post"
-topics: [""]
+categories: [""]
 authors:
   - tcasaniv
 description: "Lorem ipsum dolor sit amet"

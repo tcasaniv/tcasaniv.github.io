@@ -1,0 +1,56 @@
+---
+import { getCollection, getEntryBySlug } from "astro:content";
+
+/**
+ * This component expects either a list of categories as a prop, or an explicit 'all' to render all categories.
+ * This way, the component can be used to render a list of categories for a specific page, or all categories for a page like /categories.
+ *
+ * This is an unstyled list of all categories. Apply a class to the component to style it.
+ */
+
+export interface Props {
+  class?: string;
+  categories: "all" | string[];
+}
+
+const { class: className = "", categories = [] } = Astro.props;
+
+let categoriesFromProps = undefined;
+if (categories !== "all") {
+  categoriesFromProps = await Promise.all(
+    categories.map((categorie) => getEntryBySlug("categorie", categorie))
+  );
+}
+
+const allcategories = (await getCollection("categorie")).sort((a, b) => {
+  if (a.data.title < b.data.title) {
+    return -1;
+  }
+  if (a.data.title > b.data.title) {
+    return 1;
+  }
+  return 0;
+});
+
+let rendercategories = categories === "all" ? allcategories : categoriesFromProps;
+
+if (categories === "all") {
+  rendercategories = rendercategories?.concat({
+    slug: "uncategorized",
+    data: { title: "Sin categoría" },
+  } as unknown as (typeof allcategories)[number]);
+}
+---
+
+<ul class={className}>
+  {
+    !!rendercategories &&
+      rendercategories
+        .filter((categorie) => !!categorie?.slug && !!categorie?.data.title)
+        .map((categorie) => (
+          <li>
+            <a href={`/categories/${categorie?.slug}/`}>{categorie?.data.title}</a>
+          </li>
+        ))
+  }
+</ul>
