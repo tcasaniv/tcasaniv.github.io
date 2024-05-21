@@ -1,0 +1,44 @@
+---
+import PostList from "../../components/PostList.astro";
+import Layout from "../../layouts/Page.astro";
+import { type CollectionEntry, getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const categories = await getCollection("categorie");
+  return categories
+    .filter((categorie) => (categorie.slug as string) !== "uncategorized")
+    .map((categorie) => ({
+      params: { slug: categorie.slug },
+      props: categorie,
+    }));
+}
+type Props = CollectionEntry<"categorie">;
+
+const categorie = Astro.props;
+const { Content } = await categorie.render();
+
+const posts = await getCollection("blog");
+const categoriePosts = posts
+  .filter((post) => post.data.draft === false)
+  .filter((post) => post.data.categories.includes(categorie.slug))
+  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
+
+const title = categorie.data.title;
+const description = `Todas las entradas sobre ${title}`;
+---
+
+<Layout title={title} description={description}>
+  <section>
+    <h1>{categorie.data.title}</h1>
+    <Content />
+    {categoriePosts.length === 0 && <p>Aún no hay entradas.</p>}
+    {
+      categoriePosts.length > 0 && (
+        <>
+          <h2>Entradas sobre {categorie.data.title.toLowerCase()}</h2>
+          <PostList posts={categoriePosts} />
+        </>
+      )
+    }
+  </section>
+</Layout>

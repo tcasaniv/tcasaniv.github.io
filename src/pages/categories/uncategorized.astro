@@ -6,11 +6,11 @@ import { getCollection } from "astro:content";
 const posts = await getCollection("blog");
 const uncategorizedPost = posts
   .filter((post) => post.data.draft === false)
-  .filter((post) => post.data.topics.length === 0)
+  .filter((post) => post.data.categories.length === 0)
   .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
 
 const title = "Sin categoría";
-const description = "Entradas de blog sin tema asociado";
+const description = "Entradas de blog sin categoría asociada";
 ---
 
 <Layout title={title} description={description}>
