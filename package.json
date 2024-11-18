@@ -1,11 +1,11 @@
 {
-  "name": "tcasaniv-web",
+  "name": "tcasaniv.github.io",
   "type": "module",
   "version": "0.0.1",
   "author": "Terry Casani Valencia",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tcasaniv/tcasaniv-web.git"
+    "url": "https://github.com/tcasaniv/tcasaniv.github.io.git"
   },
   "scripts": {
     "dev": "astro dev",
