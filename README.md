@@ -1,8 +1,8 @@
-# tcasaniv-web
+# tcasaniv.github.io
 
-Repositorio del sitio web de [tcasaniv](https://www.github.com/tcasaniv).
+Repositorio del sitio web [tcasaniv.github.io](https://tcasaniv.github.io).
 
-Demo: <https://tcasaniv.github.io/tcasaniv-web>
+Demo: <https://tcasaniv.github.io>
 
 ![tcasaniv](./public/placeholder-social.jpg)
 
