@@ -22,7 +22,7 @@
 body {
   font-family: Verdana, sans-serif;
   margin: auto;
-  @apply dark:bg-slate-900;
+  @apply dark:bg-gray-900;
 }
 
 a {

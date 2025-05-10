@@ -5,12 +5,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        header: "#000",
+        header: "#1f2937",
         "header-foreground": "#fff",
         "header-dropdown": "#1e293b",
         "header-dropdown-foreground": "#fff",
         link: "#2563EB",
-        "link-dark": "#3e7afe",
+        "link-dark": "#60a5fa",
         primary: {
           500: "#2563EB",
           600: "#1D4ED8",
