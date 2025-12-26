@@ -97,7 +97,8 @@ export const RESUME = {
       links: {
         github: "https://github.com/tcasaniv",
       },
-      image: "",
+      mainImage: "",
+      gallery: [],
       date: "2025",
       featured: true
     },
@@ -109,6 +110,8 @@ export const RESUME = {
       links: {
          website: "#"
       },
+      mainImage: "",
+      gallery: [],
       date: "2025",
       featured: true
     },
@@ -117,6 +120,8 @@ export const RESUME = {
       slug: "planificador-planes-estudio",
       description: "Herramienta web para la visualización y gestión de planes de estudio universitarios. Genera la malla curricular en formato de diagrama de flujo, muestra las sumillas (resumen y temario) y detalla la información de cada asignatura, como créditos y pre-requisitos.",
       technologies: "Astro.js, HTML, CSS, JS, JSON",
+      mainImage: "",
+      gallery: [],
       date: "2024",
       featured: true
     },
@@ -128,6 +133,8 @@ export const RESUME = {
       links: {
         github: "https://github.com/tcasaniv"
       },
+      mainImage: "",
+      gallery: [],
       date: "2025",
       featured: false
     }

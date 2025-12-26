@@ -13,6 +13,16 @@ const { projects } = RESUME;
       <div class="grid gap-8 md:grid-cols-1">
         {projects.map((project) => (
           <article class="p-6 bg-[var(--bg-body)] rounded-lg border border-[var(--border-color)] hover:border-gray-400 dark:hover:border-gray-500 transition-colors">
+            {project.mainImage && (
+              <a href={`/projects/${project.slug}`} class="block mb-4 overflow-hidden rounded-lg border border-[var(--border-color)] aspect-video">
+                <img 
+                  src={project.mainImage} 
+                  alt={project.title} 
+                  class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" 
+                  loading="lazy"
+                />
+              </a>
+            )}
             <h2 class="text-2xl font-bold mb-2">
               <a href={`/projects/${project.slug}`} class="text-link no-underline hover:underline">
                 {project.title}

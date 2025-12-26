@@ -25,9 +25,9 @@ const { project } = Astro.props;
         </div>
       </div>
 
-      {project.image && (
+      {project.mainImage && (
         <div class="mb-8 rounded-lg overflow-hidden border border-[var(--border-color)]">
-          <img src={project.image} alt={project.title} class="w-full h-auto object-cover" />
+          <img src={project.mainImage} alt={project.title} class="w-full h-auto object-cover" />
         </div>
       )}
 
@@ -46,6 +46,19 @@ const { project } = Astro.props;
           ))}
         </div>
       </div>
+
+      {project.gallery && project.gallery.length > 0 && (
+        <div class="mb-8">
+          <h2 class="text-xl font-semibold mb-3">Galería</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {project.gallery.map((img) => (
+              <div class="rounded-lg overflow-hidden border border-[var(--border-color)] shadow-sm hover:shadow-md transition-shadow">
+                <img src={img} alt={`Galería de ${project.title}`} class="w-full h-auto object-cover" loading="lazy" />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {project.links && (
         <div>
