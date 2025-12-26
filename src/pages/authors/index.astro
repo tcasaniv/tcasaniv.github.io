@@ -1,23 +1,27 @@
 ---
-import Layout from "../../layouts/Page.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import AuthorList from "../../components/AuthorList.astro";
 ---
 
-<Layout
-  title="Autores"
+<BaseLayout
+  title="Autores | Terry Casani"
   description="Todas las personas que han contribuido a este blog"
 >
-  <h1>Autores</h1>
-  <AuthorList
-    class="author-list grid list-none grid-cols-1 gap-4 pl-0 md:grid-cols-2"
-    authors="all"
-    headingLevel={2}
-    showPosts
-  />
-</Layout>
+  <div class="container-custom py-8">
+    <div class="main-content">
+      <h1 class="section-title text-3xl font-bold mb-6">Autores</h1>
+      <AuthorList
+        class="author-list grid list-none grid-cols-1 gap-4 pl-0 md:grid-cols-2"
+        authors="all"
+        headingLevel={2}
+        showPosts
+      />
+    </div>
+  </div>
+</BaseLayout>
 
 <style is:global>
   .author-list > li {
-    @apply rounded-3xl border-2 border-gray-600;
+    @apply rounded-lg border border-[var(--border-color)] p-4 bg-[var(--bg-body)];
   }
 </style>

@@ -7,29 +7,20 @@ import { ViewTransitions } from "astro:transitions";
 type Props = {
   title: string;
   description: string;
-  frontmatter?: {
-    title: string;
-    description: string;
-  };
 };
 
-const { frontmatter } = Astro.props;
-const title = frontmatter?.title || Astro.props.title;
-const description = frontmatter?.description || Astro.props.description;
+const { title, description } = Astro.props;
 ---
 
+<!doctype html>
 <html lang="es">
   <head>
     <BaseHead title={title} description={description} />
     <ViewTransitions />
   </head>
-
-  <body>
-    <Header slug={title} transition:persist />
-    <main
-      class="container prose dark:prose-invert"
-      transition:animate="initial"
-    >
+  <body class="flex flex-col min-h-screen">
+    <Header />
+    <main class="flex-grow">
       <slot />
     </main>
     <Footer />

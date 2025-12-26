@@ -1,10 +1,39 @@
 ---
 import { getCollection } from "astro:content";
 import Search from "./Search";
+import { RESUME } from "../data/resume";
 
-const posts = (await getCollection("blog"))
-  .filter((post) => post.data.draft === false)
-  .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
+// Get Blog Posts
+const blogPosts = (await getCollection("blog"))
+  .filter((post) => post.data.draft === false);
+
+// Transform Blog Posts to SearchItems
+const blogItems = blogPosts.map(post => ({
+    title: post.data.title,
+    description: post.data.description,
+    url: `/blog/${post.slug}/`,
+    type: "blog" as const,
+    date: post.data.pubDate.valueOf(),
+    originalData: post
+}));
+
+// Get Projects
+const { projects } = RESUME;
+
+// Transform Projects to SearchItems
+const projectItems = projects.map(project => ({
+    title: project.title,
+    description: project.description,
+    url: '/projects', // All projects are on the /projects page for now
+    type: "project" as const,
+    date: 0 // Projects don't have a date in the resume data
+}));
+
+// Combine and Sort
+const searchList = [...blogItems, ...projectItems].sort((a, b) => {
+    // Prioritize items with dates (newest first), then projects
+    return b.date - a.date;
+});
 ---
 
-<Search client:load searchList={posts} />
+<Search client:load searchList={searchList} />

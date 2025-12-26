@@ -1,19 +1,14 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import BaseLayout from "./BaseLayout.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import AuthorList from "../components/AuthorList.astro";
 import CategorieList from "../components/CategorieList.astro";
 import { Image } from "astro:assets";
-import { ViewTransitions } from "astro:transitions";
-import EmojiReactions from "../components/backend-services/EmojiReactions.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
 const {
-  id,
   title,
   description,
   pubDate,
@@ -24,65 +19,68 @@ const {
 } = Astro.props;
 ---
 
-<html lang="es">
-  <head>
-    <BaseHead title={title} description={description} />
-    <ViewTransitions />
-  </head>
-
-  <body>
-    <Header slug={`Blog/${Astro.props.id}`} transition:persist />
-
-    <main class="container">
-      <article class="prose mx-auto dark:prose-invert">
+<BaseLayout title={title} description={description}>
+  <div class="container-custom py-8">
+    <div class="main-content">
+      <article class="prose mx-auto">
         {
           heroImage && (
-            <Image width={661.17} height={330.5} src={heroImage} alt="" />
-          )
-          
-        }
-        <h1 class="title">{title}</h1>
-        <FormattedDate date={pubDate} />
-        {
-          updatedDate && (
-            <div class="last-updated-on">
-              Última actualización <FormattedDate date={updatedDate} />
+            <div class="mb-6 rounded-lg overflow-hidden">
+               <Image width={960} height={480} src={heroImage} alt="" class="w-full h-auto object-cover" />
             </div>
           )
         }
-        <hr />
-        <slot />
-        <footer>
-          <EmojiReactions id={id} />
+        <h1 class="text-3xl font-bold mb-2 text-[var(--text-main)]">{title}</h1>
+        <div class="text-[var(--text-muted)] mb-6 text-sm">
+          <FormattedDate date={pubDate} />
+          {
+            updatedDate && (
+              <span class="ml-2 italic">
+                (Actualizado: <FormattedDate date={updatedDate} />)
+              </span>
+            )
+          }
+        </div>
+        
+        <hr class="border-[var(--border-color)] mb-8" />
+        
+        <div class="content">
+            <slot />
+        </div>
+
+        <hr class="border-[var(--border-color)] my-8" />
+
+        <footer class="mt-8">
+          
           {
             categories.length > 0 && (
-              <>
-                <h2>Categorías</h2>
+              <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-3">Categorías</h3>
                 <CategorieList categories={categories} />
-              </>
+              </div>
             )
           }
           {
             !!authors.length && (
-              <>
-                <h2>Autor{authors.length > 1 ? "es" : ""}</h2>
+              <div>
+                <h3 class="text-xl font-semibold mb-3">Autor{authors.length > 1 ? "es" : ""}</h3>
                 <AuthorList
                   class="author-list grid list-none grid-cols-1 gap-4 pl-0"
                   authors={authors}
                   headingLevel={3}
                   showPosts={false}
                 />
-              </>
+              </div>
             )
           }
         </footer>
       </article>
-    </main>
-    <Footer />
-    <style is:global>
-      .author-list > li {
-        @apply rounded-3xl border-2 border-gray-600;
-      }
-    </style>
-  </body>
-</html>
+    </div>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  .author-list > li {
+    @apply rounded-lg border border-[var(--border-color)] p-4 bg-[var(--bg-body)];
+  }
+</style>

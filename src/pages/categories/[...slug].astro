@@ -1,6 +1,6 @@
 ---
 import PostList from "../../components/PostList.astro";
-import Layout from "../../layouts/Page.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import { type CollectionEntry, getCollection } from "astro:content";
 
 export async function getStaticPaths() {
@@ -27,18 +27,24 @@ const title = categorie.data.title;
 const description = `Todas las entradas sobre ${title}`;
 ---
 
-<Layout title={title} description={description}>
-  <section>
-    <h1>{categorie.data.title}</h1>
-    <Content />
-    {categoriePosts.length === 0 && <p>Aún no hay entradas.</p>}
-    {
-      categoriePosts.length > 0 && (
-        <>
-          <h2>Entradas sobre {categorie.data.title.toLowerCase()}</h2>
-          <PostList posts={categoriePosts} />
-        </>
-      )
-    }
-  </section>
-</Layout>
+<BaseLayout title={title} description={description}>
+  <div class="container-custom py-8">
+    <div class="main-content">
+      <section>
+        <h1 class="section-title text-3xl font-bold mb-4">{categorie.data.title}</h1>
+        <div class="prose mb-8">
+            <Content />
+        </div>
+        {categoriePosts.length === 0 && <p class="text-[var(--text-muted)]">Aún no hay entradas.</p>}
+        {
+          categoriePosts.length > 0 && (
+            <>
+              <h2 class="text-2xl font-bold mb-4">Entradas sobre {categorie.data.title.toLowerCase()}</h2>
+              <PostList posts={categoriePosts} />
+            </>
+          )
+        }
+      </section>
+    </div>
+  </div>
+</BaseLayout>

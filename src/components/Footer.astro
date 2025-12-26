@@ -1,9 +1,9 @@
 ---
-import { BRAND } from "../consts";
-
 const today = new Date();
 ---
 
-<footer class="p-6 text-center dark:text-white/70">
-  &copy; {today.getFullYear()}&nbsp;{BRAND}. Todos los derechos reservados.
+<footer class="bg-[var(--bg-header)] text-[var(--text-header)] text-center py-5 mt-auto">
+  <div class="container-custom">
+    <p class="m-0">&copy; {today.getFullYear()} Terry Joel Casani Valencia. Todos los derechos reservados.</p>
+  </div>
 </footer>

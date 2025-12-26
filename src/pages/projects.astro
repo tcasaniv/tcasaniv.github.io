@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { RESUME } from "../data/resume";
+
+const { projects } = RESUME;
+---
+
+<BaseLayout title="Proyectos | Terry Casani" description="Proyectos y trabajos realizados">
+  <div class="container-custom py-8">
+    <div class="main-content">
+      <h1 class="section-title text-3xl font-bold mb-8">Proyectos</h1>
+      
+      <div class="grid gap-8 md:grid-cols-1">
+        {projects.map((project) => (
+          <article class="p-6 bg-[var(--bg-body)] rounded-lg border border-[var(--border-color)]">
+            <h2 class="text-2xl font-bold mb-2">{project.title}</h2>
+            <p class="mb-4 text-[var(--text-muted)]">{project.description}</p>
+            <div class="mt-4">
+               <span class="font-semibold">Tecnologías:</span>
+               <span class="ml-2 inline-block bg-[var(--bg-card)] px-2 py-1 rounded text-sm border border-gray-200 dark:border-gray-700">
+                 {project.technologies}
+               </span>
+            </div>
+          </article>
+        ))}
+      </div>
+      
+      <!-- Placeholder for more projects or a note -->
+      <div class="mt-8 text-center text-[var(--text-muted)]">
+        <p>Más proyectos en mi <a href="https://github.com/tcasaniv" target="_blank" class="underline hover:text-[var(--text-main)]">GitHub</a>.</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

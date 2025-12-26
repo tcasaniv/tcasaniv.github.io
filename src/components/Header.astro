@@ -1,150 +1,45 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
-// import HeaderDropdownLink from "./HeaderDropdownLink.astro";
-import { SITE_TITLE } from "../consts";
-// import HeaderDropdown from "./HeaderDropdown.astro";
-// import { getCollection } from "astro:content";
 import DarkModeToggle from "./DarkModeToggle.astro";
-type Props = {
-  slug: string;
-};
-// const categories = await getCollection("categorie");
+import { SITE_TITLE } from "../consts";
 ---
 
-<header
-  class="sticky left-0 top-0 z-50 flex w-full flex-col bg-header py-4 text-header-foreground"
->
-  <div class="z-1 relative px-2">
-    <div
-      class="mx-auto flex w-full max-w-6xl items-center justify-between px-4"
-    >
-      <div class="title-container flex w-full justify-between py-3">
-        <h2 class="m-0 text-xl font-medium">
-          <a
-            href="/"
-            class="text-header-foreground no-underline dark:text-header-foreground"
-          >
-            {SITE_TITLE}:~/{Astro.props.slug}
-          </a>
-        </h2>
+<header class="bg-[var(--bg-header)] text-[var(--text-header)] py-4 shadow-md sticky top-0 z-50">
+  <div class="container-custom flex flex-wrap items-center justify-between">
+    <a href="/" class="text-xl font-bold no-underline text-white hover:text-gray-300">
+      {SITE_TITLE}
+    </a>
 
-        <button
-          class="hamburger flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-2 border-header-foreground bg-transparent p-1 text-header-foreground active:bg-white active:text-black md:hidden"
-        >
+    <nav class="flex items-center gap-4 mt-2 sm:mt-0">
+      <HeaderLink href="/" class="text-white hover:underline">Inicio</HeaderLink>
+      <HeaderLink href="/blog" class="text-white hover:underline">Blog</HeaderLink>
+      <HeaderLink href="/projects" class="text-white hover:underline">Proyectos</HeaderLink>
+      
+      <div class="flex items-center gap-2 border-l pl-4 border-gray-600">
+        <a href="/search" class="text-white hover:text-gray-300">
+          <span class="sr-only">Buscar</span>
           <svg
-            class="open h-6"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="h-6 w-6"
+            class="h-5 w-5"
           >
-            <title>Abrir</title>
+            <title>Buscar</title>
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+            ></path>
           </svg>
-          <svg
-            class="close h-6"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="h-6 w-6"
-          >
-            <title>Cerrar</title>
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
+        </a>
+        <a href="https://github.com/tcasaniv" target="_blank" class="text-white hover:text-gray-300">
+          <span class="sr-only">GitHub</span>
+          <svg viewBox="0 0 16 16" class="w-5 h-5" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+        </a>
+        <DarkModeToggle />
       </div>
-
-      <nav
-        class="absolute left-0 top-full hidden w-full bg-header px-5 md:static md:block md:p-0"
-      >
-        <ul
-          class="m-0 flex list-none flex-col items-start gap-4 px-2 py-4 pb-8 md:flex-row md:items-center md:justify-between md:p-0 md:py-2"
-        >
-          <HeaderLink href="/blog">Blog</HeaderLink>
-
-          <!-- <HeaderLink href="/authors">Autores</HeaderLink> -->
-          
-          <!-- <HeaderDropdown href="/categories" linkText="Categorías">
-            {
-              categories.map((categorie) => (
-                <HeaderDropdownLink href={`/categories/${categorie.slug}`}>
-                  {categorie.data.title}
-                </HeaderDropdownLink>
-              ))
-            }
-          </HeaderDropdown> -->
-          <HeaderLink href="/about">Acerca de</HeaderLink>
-          <HeaderLink
-            href="https://github.com/tcasaniv/"
-            target="_blank"
-          >
-            GitHub
-          </HeaderLink>
-          <HeaderLink href="/search">
-            <span class="mr-2 md:sr-only">Buscar</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="h-6 w-6"
-            >
-              <title>Buscar</title>
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-              ></path>
-            </svg>
-          </HeaderLink>
-          <DarkModeToggle />
-        </ul>
-      </nav>
-    </div>
+    </nav>
   </div>
 </header>
-
-<style>
-  .hamburger.open svg.open {
-    display: none;
-  }
-  .hamburger svg.close {
-    display: none;
-  }
-  .hamburger.open svg.close {
-    display: block;
-  }
-</style>
-
-<script>
-  function setupHamburgerMenuToggle() {
-    const hamburger = document.querySelector(".hamburger");
-    const nav = document.querySelector("header nav");
-
-    if (!hamburger || !nav) {
-      throw new Error("Could not find hamburger or nav");
-    }
-
-    hamburger.addEventListener("click", () => {
-      nav.classList.toggle("hidden");
-      hamburger.classList.toggle("open");
-    });
-  }
-
-  // When Astro navigates pages using <ViewTransitions /> the click event needs to be added again
-  // See: https://docs.astro.build/en/guides/view-transitions/#astropage-load
-  document.addEventListener("astro:page-load", () => {
-    setupHamburgerMenuToggle();
-  });
-</script>

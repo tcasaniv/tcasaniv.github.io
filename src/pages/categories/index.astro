@@ -1,12 +1,16 @@
 ---
-import Layout from "../../layouts/Page.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import CategorieList from "../../components/CategorieList.astro";
 ---
 
-<Layout
-  title="Categorías"
+<BaseLayout
+  title="Categorías | Terry Casani"
   description="Una visión general de todos las categorías en este blog."
 >
-  <h1>Todos las categorías de este blog</h1>
-  <CategorieList categories="all" />
-</Layout>
+  <div class="container-custom py-8">
+    <div class="main-content">
+      <h1 class="section-title text-3xl font-bold mb-6">Todas las categorías de este blog</h1>
+      <CategorieList categories="all" />
+    </div>
+  </div>
+</BaseLayout>

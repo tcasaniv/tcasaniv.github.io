@@ -1,10 +1,14 @@
 ---
-import Layout from "../layouts/Page.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import Searchbar from "../components/Searchbar.astro";
 ---
 
-<Layout title="Buscar" description="Busca por cualquier título, descripción or contenido.">
-  <h1>Buscar</h1>
-  <p>Busca por cualquier título, descripción or contenido. </p>
-  <Searchbar />
-</Layout>
+<BaseLayout title="Buscar" description="Busca por cualquier título, descripción or contenido.">
+  <div class="container-custom py-8">
+    <div class="main-content">
+      <h1 class="section-title text-3xl font-bold mb-6">Buscar</h1>
+      <p class="mb-6 text-[var(--text-muted)]">Busca por cualquier título, descripción or contenido. </p>
+      <Searchbar />
+    </div>
+  </div>
+</BaseLayout>

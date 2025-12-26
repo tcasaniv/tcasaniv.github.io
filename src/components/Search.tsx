@@ -1,4 +1,3 @@
-import type { CollectionEntry } from "astro:content";
 import Fuse from "fuse.js";
 import {
   Show,
@@ -9,30 +8,37 @@ import {
 } from "solid-js";
 import { PostListItem } from "./PostListItem";
 
+export type SearchItem = {
+  title: string;
+  description: string;
+  url: string;
+  type: "blog" | "project";
+  date?: number; // timestamp for sorting
+  originalData?: any;
+};
+
 const options = {
-  keys: ["data.title", "data.description", "slug"],
+  keys: ["title", "description"],
   includeMatches: true,
   minMatchCharLength: 2,
   threshold: 0.5,
 };
 
 type Props = {
-  searchList: CollectionEntry<"blog">[];
+  searchList: SearchItem[];
 };
 
 export default function Search({ searchList }: Props) {
   const fuse = new Fuse(searchList, options);
   const [query, setQuery] = createSignal("");
 
-  const posts = createMemo(() => {
+  const results = createMemo(() => {
     return fuse
       .search(query())
       .map((result) => result.item)
-      .slice(0, 5)
-      .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
+      .slice(0, 10); // Show up to 10 results
   });
 
-  // initialize query from URL
   onMount(() => {
     if (typeof window !== "undefined") {
       const searchParams = new URLSearchParams(window.location.search);
@@ -41,10 +47,13 @@ export default function Search({ searchList }: Props) {
     }
   });
 
-  // Update URL query parameter when the query changes
   createEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    searchParams.set("q", query());
+    if (query()) {
+        searchParams.set("q", query());
+    } else {
+        searchParams.delete("q");
+    }
     const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
     window.history.replaceState({}, "", newUrl);
   });
@@ -57,7 +66,7 @@ export default function Search({ searchList }: Props) {
       >
         Buscar
       </label>
-      <div class="relative">
+      <div class="relative mb-6">
         <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
           <svg
             aria-hidden="true"
@@ -77,23 +86,42 @@ export default function Search({ searchList }: Props) {
         </div>
         <input
           class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-primary-500 focus:outline-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
-          placeholder="Buscar entradas en el blog..."
+          placeholder="Buscar blogs o proyectos..."
           required
           id="search"
           onInput={(e) => setQuery(e.target.value)}
           value={query()}
         />
       </div>
-      <Show when={posts().length > 0}>
+      
+      <Show when={query() && results().length === 0}>
+          <p class="text-center text-gray-500">No se encontraron resultados para "{query()}".</p>
+      </Show>
+
+      <Show when={results().length > 0}>
         <ul class="grid list-none gap-6 p-0">
-          {posts().map((post, index) => (
+          {results().map((item, index) => (
             <li
               class="animate-stagger p-0"
               style={{
                 "--animation-order": index + 1,
               }}
             >
-              <PostListItem post={post} />
+              {item.type === 'blog' ? (
+                  <PostListItem post={item.originalData} />
+              ) : (
+                  <div class="flex flex-col p-4 bg-[var(--bg-body)] rounded border border-[var(--border-color)]">
+                      <div class="flex justify-between items-start">
+                          <h2 class="mb-1 mt-0 text-xl font-bold">
+                              <a href={item.url} class="text-link no-underline hover:underline">
+                                  {item.title}
+                              </a>
+                          </h2>
+                          <span class="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">Proyecto</span>
+                      </div>
+                      <p class="mb-2 text-sm">{item.description}</p>
+                  </div>
+              )}
             </li>
           ))}
         </ul>

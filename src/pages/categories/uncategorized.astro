@@ -1,6 +1,6 @@
 ---
 import PostList from "../../components/PostList.astro";
-import Layout from "../../layouts/Page.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
 const posts = await getCollection("blog");
@@ -13,17 +13,21 @@ const title = "Sin categoría";
 const description = "Entradas de blog sin categoría asociada";
 ---
 
-<Layout title={title} description={description}>
-  <section>
-    <h1>{title}</h1>
-    {uncategorizedPost.length === 0 && <p>Aún no hay entradas.</p>}
-    {
-      uncategorizedPost.length > 0 && (
-        <>
-          <h2>{description}</h2>
-          <PostList posts={uncategorizedPost} />
-        </>
-      )
-    }
-  </section>
-</Layout>
+<BaseLayout title={title} description={description}>
+  <div class="container-custom py-8">
+    <div class="main-content">
+      <section>
+        <h1 class="section-title text-3xl font-bold mb-4">{title}</h1>
+        {uncategorizedPost.length === 0 && <p class="text-[var(--text-muted)]">Aún no hay entradas.</p>}
+        {
+          uncategorizedPost.length > 0 && (
+            <>
+              <h2 class="text-xl font-semibold mb-4">{description}</h2>
+              <PostList posts={uncategorizedPost} />
+            </>
+          )
+        }
+      </section>
+    </div>
+  </div>
+</BaseLayout>

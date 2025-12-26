@@ -1,13 +1,16 @@
 ---
-import Layout from "../layouts/Page.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<Layout
+<BaseLayout
   title="Error 404"
   description="Página no encontrada."
 >
-  <h1>404 - no encontrado :(</h1>
-  <div class="not-prose">
-    <a class="btn" href="/blog">Ir a la página de inicio</a>
+  <div class="container-custom py-8 text-center">
+    <div class="main-content">
+      <h1 class="text-4xl font-bold mb-4">404 - no encontrado :(</h1>
+      <p class="mb-6 text-[var(--text-muted)]">La página que buscas no existe.</p>
+      <a class="btn" href="/">Ir a la página de inicio</a>
+    </div>
   </div>
-</Layout>
+</BaseLayout>
