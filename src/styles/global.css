@@ -78,6 +78,9 @@
 .prose p, .prose ul, .prose ol {
   color: var(--text-main);
 }
+.prose strong {
+  color: var(--text-main);
+}
 .prose code {
   background-color: var(--bg-body);
   padding: 0.2em 0.4em;
