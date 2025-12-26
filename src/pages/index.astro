@@ -3,6 +3,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { SITE_TITLE, SITE_DESCRIPTION, RESUME, SOCIAL_LINKS } from "../data/resume";
 
 const { summary, experience, education, skills, projects } = RESUME;
+
+const featuredProjects = projects.filter(project => project.featured);
 ---
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -36,25 +38,27 @@ const { summary, experience, education, skills, projects } = RESUME;
       </section>
 
       <!-- Projects -->
-      <section id="projects" class="mb-10">
-        <h2 class="section-title text-2xl font-bold">Proyectos Destacados</h2>
-        <div class="space-y-6">
-          {projects.map((project) => (
-            <div class="mb-6">
-              <h3 class="text-xl font-semibold mb-2">
-                <a href={`/projects/${project.slug}`} class="text-[var(--text-main)] hover:underline">
-                  {project.title}
-                </a>
-              </h3>
-              <p class="mb-2 text-[var(--text-muted)]">{project.description}</p>
-              <p class="text-sm"><strong>Tecnologías:</strong> {project.technologies}</p>
-            </div>
-          ))}
-        </div>
-        <div class="mt-4">
-           <a href="/projects" class="text-link hover:underline font-medium">Ver todos los proyectos &rarr;</a>
-        </div>
-      </section>
+      {featuredProjects.length > 0 && (
+        <section id="projects" class="mb-10">
+          <h2 class="section-title text-2xl font-bold">Proyectos Destacados</h2>
+          <div class="space-y-6">
+            {featuredProjects.map((project) => (
+              <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-2">
+                  <a href={`/projects/${project.slug}`} class="text-[var(--text-main)] hover:underline">
+                    {project.title}
+                  </a>
+                </h3>
+                <p class="mb-2 text-[var(--text-muted)]">{project.description}</p>
+                <p class="text-sm"><strong>Tecnologías:</strong> {project.technologies}</p>
+              </div>
+            ))}
+          </div>
+          <div class="mt-4">
+             <a href="/projects" class="text-link hover:underline font-medium">Ver todos los proyectos &rarr;</a>
+          </div>
+        </section>
+      )}
 
       <!-- Experience -->
       <section id="experience" class="mb-10">
