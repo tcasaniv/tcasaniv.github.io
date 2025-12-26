@@ -93,3 +93,110 @@
   border-radius: 0.5rem;
   overflow-x: auto;
 }
+
+/* Print Styles */
+@media print {
+  @page {
+    margin: 1.5cm;
+  }
+  
+  body {
+    background-color: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    font-size: 10pt !important;
+  }
+
+  /* Hide navigation, footer, and interactive elements */
+  .site-header, 
+  .site-footer, 
+  .btn, 
+  .no-print,
+  button[id$="-btn"] /* Dark mode toggle if not in header */ 
+  {
+    display: none !important;
+  }
+
+  /* Reset layout for print */
+  .container-custom {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .main-content {
+    box-shadow: none !important;
+    margin-top: 20px !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
+
+  /* Reset specific section styles */
+  .section-title {
+    border-bottom: 2px solid black !important;
+    color: black !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  /* Typography overrides */
+  h1, h2, h3, h4, p, li, strong {
+    color: black !important;
+  }
+  
+  a {
+    text-decoration: none !important;
+    color: black !important;
+  }
+  
+  /* Show URL for links in content, but maybe not for nav links since they are hidden */
+  .prose a::after {
+    content: " (" attr(href) ")";
+  }
+
+  /* Ensure text is readable */
+  .text-gray-400, .text-gray-500, .text-gray-600 {
+    color: #333 !important;
+  }
+
+  /* Remove backgrounds from lists/cards */
+  .job, .education-item, .project-item, li {
+    background-color: transparent !important;
+    border-color: #333 !important;
+  }
+  
+  /* Hero specific tweaks */
+  .hero-header {
+    background: #333 !important;
+    color: #fff !important;
+    padding: 10px !important;
+    margin: 0 !important;
+    /* text-align: left !important; */
+  }
+  
+  .hero-header h1 {
+    font-size: 2rem !important;
+    margin-bottom: 0.5rem !important;
+    color: #fff !important;
+  }
+
+  .hero-header p {
+    color: #fff !important;
+    margin-bottom: 0.25rem !important;
+  }
+  
+  /* .hero-header .flex {
+    justify-content: flex-start !important;
+  } */
+  
+  .hero-header a, .hero-header span {
+    color: #fff !important;
+  }
+
+  .sectionli {
+    /* margin: 0rem; */
+    padding: 0.1rem !important;
+    padding-left: 0.75rem !important;
+  }
+
+}

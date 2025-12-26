@@ -27,7 +27,7 @@ const { projects } = RESUME;
                   </span>
                ))}
             </div>
-            <div class="mt-4">
+            <div class="mt-4 no-print">
               <a href={`/projects/${project.slug}`} class="text-sm font-medium text-[var(--accent-color)] hover:text-[var(--text-main)] transition-colors">
                 Ver detalles &rarr;
               </a>
@@ -36,7 +36,7 @@ const { projects } = RESUME;
         ))}
       </div>
       
-      <div class="mt-8 text-center text-[var(--text-muted)]">
+      <div class="mt-8 text-center text-[var(--text-muted)] no-print">
         <p>Más proyectos en mi <a href="https://github.com/tcasaniv" target="_blank" class="underline hover:text-[var(--text-main)]">GitHub</a>.</p>
       </div>
     </div>
