@@ -24,14 +24,17 @@ const { projects } = RESUME;
 const projectItems = projects.map(project => ({
     title: project.title,
     description: project.description,
-    url: '/projects', // All projects are on the /projects page for now
+    url: `/projects/${project.slug}`, // Link to individual page
     type: "project" as const,
-    date: 0 // Projects don't have a date in the resume data
+    date: project.date ? parseInt(project.date) : 0 // Basic date handling
 }));
 
 // Combine and Sort
 const searchList = [...blogItems, ...projectItems].sort((a, b) => {
     // Prioritize items with dates (newest first), then projects
+    // Note: blog dates are timestamps (large numbers), project dates are years (small numbers) or 0
+    // This sorting might need refinement if strict chronological order between blogs and projects is needed.
+    // For now, let's just default sort.
     return b.date - a.date;
 });
 ---

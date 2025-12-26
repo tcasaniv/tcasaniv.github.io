@@ -91,23 +91,41 @@ export const RESUME = {
   projects: [
     {
       title: "Tesis: Sistema de Transmisión de Imágenes APT con SDR (APT-Tx)",
+      slug: "sistema-transmision-imagenes-apt-sdr",
       description: "Diseño e implementación de un software que simula pases de satélites meteorológicos NOAA. El sistema toma dos imágenes, las codifica al formato estándar APT (Automatic Picture Transmission), modula la señal de audio resultante en FM usando GNU Radio y la transmite a través de un dispositivo SDR (hackRF, bladeRF, USRP).",
-      technologies: "Python, Flet, GNU Radio, SDR, Procesamiento de Señales."
+      technologies: "Python, Flet, GNU Radio, SDR, Procesamiento de Señales",
+      links: {
+        github: "https://github.com/tcasaniv",
+      },
+      image: "",
+      date: "2025"
     },
     {
       title: "Planificador y Gestor de Horarios Universitario",
+      slug: "planificador-gestor-horarios-universitario",
       description: "Aplicación web para la gestión completa de horarios de una escuela profesional. Permite visualizar la planificación por ambientes (aulas, laboratorios), cursos, docentes y secciones, evitando conflictos y optimizando el uso de recursos.",
-      technologies: "Astro.js, HTML, CSS, JS, JSON."
+      technologies: "Astro.js, HTML, CSS, JS, JSON",
+      links: {
+         website: "#"
+      },
+      date: "2025"
     },
     {
       title: "Planificador de Planes de Estudio",
+      slug: "planificador-planes-estudio",
       description: "Herramienta web para la visualización y gestión de planes de estudio universitarios. Genera la malla curricular en formato de diagrama de flujo, muestra las sumillas (resumen y temario) y detalla la información de cada asignatura, como créditos y pre-requisitos.",
-      technologies: "Astro.js, HTML, CSS, JS, JSON."
+      technologies: "Astro.js, HTML, CSS, JS, JSON",
+      date: "2024"
     },
     {
       title: "Comparador de Imágenes (Diff-image)",
+      slug: "comparador-imagenes-diff-image",
       description: "Software que compara dos imágenes para determinar su similitud estructural utilizando algoritmos como SSIM (Índice de Similitud Estructural) o MSE (Error Cuadrático Medio). Como resultado, genera una tercera imagen que resalta visualmente las diferencias encontradas.",
-      technologies: "Python, OpenCV, Scikit-image, Flet."
+      technologies: "Python, OpenCV, Scikit-image, Flet",
+      links: {
+        github: "https://github.com/tcasaniv"
+      },
+      date: "2025"
     }
   ]
 };
