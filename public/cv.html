@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terry Joel Casani Valencia - Portafolio</title>
+    <style>
+        /* Estilos CSS (Mantenemos el diseño original con pequeñas adiciones) */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            margin: 0.5rem 0;
+            font-size: 1.2rem;
+        }
+        
+        .contact-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .contact-links a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #555;
+            color: #fff;
+            padding: 10px 20px;
+            margin-top: 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #ddd;
+            color: #333;
+        }
+
+        .main-content {
+            padding: 20px;
+            background: #fff;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .job, .education-item, .project-item {
+            margin-bottom: 20px;
+        }
+
+        .job h3, .education-item h3, .project-item h3 {
+            margin-bottom: 5px;
+        }
+
+        .job p, .education-item p, .project-item p {
+            margin: 0;
+            color: #555;
+        }
+        .project-item p strong {
+            color: #333;
+        }
+
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            background: #f9f9f9;
+            margin-bottom: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #333;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            background: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Terry Joel Casani Valencia</h1>
+            <p>Laboratorista de Ingeniería en Telecomunicaciones</p>
+            <div class="contact-links">
+                <a href="mailto:tcasaniv@gmail.com" target="_blank">Email</a> |
+                <a href="https://www.linkedin.com/in/tcasaniv/" target="_blank">LinkedIn</a> |
+                <a href="https://github.com/tcasaniv" target="_blank">GitHub</a>
+            </div>
+            <!-- Coloca tu archivo CV en la misma carpeta que este HTML -->
+            <a href="CV_Terry_Casani.pdf" class="btn" download>Descargar CV</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <div id="about" class="section">
+                <h2>Resumen</h2>
+                <p>
+                    Bachiller en Ingeniería en Telecomunicaciones con experiencia en la organización, operación y mantenimiento de laboratorios de telecomunicaciones. Especializado en comunicaciones satelitales, manejo y configuración de equipos de laboratorio, y tecnologías de Radio Definida por Software (SDR). Competente en programación y automatización de procesos, con una formación continua en tecnologías emergentes.
+                </p>
+            </div>
+
+            <div id="projects" class="section">
+                <h2>Proyectos Destacados</h2>
+                <div class="project-item">
+                    <h3>Tesis: Sistema de Transmisión de Imágenes APT con SDR (APT-Tx)</h3>
+                    <p>
+                        Diseño e implementación de un software que simula pases de satélites meteorológicos NOAA. El sistema toma dos imágenes, las codifica al formato estándar APT (Automatic Picture Transmission), modula la señal de audio resultante en FM usando GNU Radio y la transmite a través de un dispositivo SDR (hackRF, bladeRF, USRP).
+                    </p>
+                    <p><strong>Tecnologías:</strong> Python, Flet, GNU Radio, SDR, Procesamiento de Señales.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Planificador y Gestor de Horarios Universitario</h3>
+                    <p>
+                        Aplicación web para la gestión completa de horarios de una escuela profesional. Permite visualizar la planificación por ambientes (aulas, laboratorios), cursos, docentes y secciones, evitando conflictos y optimizando el uso de recursos.
+                    </p>
+                     <p><strong>Tecnologías:</strong> Astro.js, HTML, CSS, JS, JSON.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Planificador de Planes de Estudio</h3>
+                    <p>
+                        Herramienta web para la visualización y gestión de planes de estudio universitarios. Genera la malla curricular en formato de diagrama de flujo, muestra las sumillas (resumen y temario) y detalla la información de cada asignatura, como créditos y pre-requisitos.
+                    </p>
+                     <p><strong>Tecnologías:</strong> Astro.js, HTML, CSS, JS, JSON.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Comparador de Imágenes (Diff-image)</h3>
+                    <p>
+                        Software que compara dos imágenes para determinar su similitud estructural utilizando algoritmos como SSIM (Índice de Similitud Estructural) o MSE (Error Cuadrático Medio). Como resultado, genera una tercera imagen que resalta visualmente las diferencias encontradas.
+                    </p>
+                     <p><strong>Tecnologías:</strong> Python, OpenCV, Scikit-image, Flet.</p>
+                </div>
+            </div>
+
+            <div id="experience" class="section">
+                <h2>Experiencia</h2>
+                <div class="job">
+                    <h3>Laboratorista en Ingeniería en Telecomunicaciones</h3>
+                    <p>Universidad Nacional de San Agustín de Arequipa (Feb 2024 - Actualidad)</p>
+                    <ul>
+                        <li>Gestión integral de laboratorios: mantenimiento, calibración y actualización de equipos técnicos.</li>
+                        <li>Asesoramiento técnico a docentes y estudiantes en el manejo de equipos como USRP, BladeRF, RTL-SDR y VNA.</li>
+                        <li>Desarrollo de simulaciones en MATLAB, GNU Radio y Python para aplicaciones educativas.</li>
+                    </ul>
+                </div>
+                 <div class="job">
+                    <h3>Asistente de Investigación en Ingeniería en Telecomunicaciones</h3>
+                    <p>Instituto de Investigación Astronómico y Aeroespacial Pedro Paulet - UNSA (Ene 2024 - Mar 2024)</p>
+                    <ul>
+                        <li>Investigación en comunicaciones satelitales y automatización de la recepción de imágenes con SATNOGS.</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <h3>Practicante Pre-Profesional de Ingeniería en Telecomunicaciones</h3>
+                    <p>Instituto de Investigación Astronómico y Aeroespacial Pedro Paulet - UNSA (Jun 2023 - Dic 2023)</p>
+                    <ul>
+                        <li>Recepción y procesamiento de señales satelitales. Automatización de recepción de imágenes con SDR.</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <h3>Técnico de Mantenimiento y Soporte de Computadoras</h3>
+                    <p>Grupo Informático Auditronic SRL (2018 - 2019)</p>
+                    <ul>
+                        <li>Ensamblaje, formateo, instalación de software y resolución de problemas técnicos.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="education" class="section">
+                <h2>Educación</h2>
+                <div class="education-item">
+                    <h3>Estudiante de Maestría en Ciencias: Informática</h3>
+                    <p>Universidad Nacional de San Agustín de Arequipa (2025 - 2027)</p>
+                </div>
+                <div class="education-item">
+                    <h3>Bachiller en Ingeniería En Telecomunicaciones</h3>
+                    <p>Universidad Nacional de San Agustín de Arequipa (2019 - 2024)</p>
+                </div>
+                 <div class="education-item">
+                    <h3>Computación e Informática</h3>
+                    <p>Instituto Educación Superior Tecnológico Público "Pedro P. Díaz" (2018)</p>
+                </div>
+            </div>
+
+            <div id="skills" class="section">
+                <h2>Habilidades</h2>
+                <ul>
+                    <li><strong>Comunicaciones Satelitales:</strong> Operación y automatización de sistemas satelitales, procesamiento de señales.</li>
+                    <li><strong>Radio Definida por Software (SDR):</strong> Manejo de dispositivos (RTL-SDR, hackRF, bladeRF, USRP) y software (GNU Radio).</li>
+                    <li><strong>Programación:</strong> Python (Pandas, OpenCV, Flet), C, C++ (Arduino), HTML, CSS, Javascript, Node.js, Astro, Flet.</li>
+                    <li><strong>Sistemas Operativos:</strong> Administración y uso eficiente de Linux, macOS y Windows.</li>
+                    <li><strong>Proyectos IoT:</strong> Implementación con Arduino, sensores y actuadores.</li>
+                    <li><strong>Ofimática y Documentación:</strong> MS Office, Google Workspace, LaTeX, Typst.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Terry Joel Casani Valencia</p>
+    </footer>
+    
+    <script>
+        // Script JS para interactividad futura
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Portafolio de Terry Casani cargado.');
+        });
+    </script>
+
+</body>
+</html>

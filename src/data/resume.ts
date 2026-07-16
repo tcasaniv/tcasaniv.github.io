@@ -97,8 +97,8 @@ export const RESUME = {
       links: {
         github: "https://github.com/tcasaniv",
       },
-      mainImage: "",
-      gallery: [],
+      // mainImage: "/images/projects/Placeholder.svg",
+      // gallery: ["/images/projects/Placeholder.svg", "/images/projects/Placeholder.svg"],
       date: "2025",
       featured: true
     },
@@ -106,12 +106,13 @@ export const RESUME = {
       title: "Planificador y Gestor de Horarios Universitario",
       slug: "planificador-gestor-horarios-universitario",
       description: "Aplicación web para la gestión completa de horarios de una escuela profesional. Permite visualizar la planificación por ambientes (aulas, laboratorios), cursos, docentes y secciones, evitando conflictos y optimizando el uso de recursos.",
-      technologies: "Astro.js, HTML, CSS, JS, JSON",
+      technologies: "React, HTML, CSS, JS, JSON",
       links: {
-         website: "#"
+         website: "https://tcasaniv.github.io/generador-de-horarios/",
+         github: "https://github.com/tcasaniv/generador-de-horarios"
       },
-      mainImage: "",
-      gallery: [],
+      // mainImage: "/images/projects/Placeholder.svg",
+      // gallery: ["/images/projects/Placeholder.svg", "/images/projects/Placeholder.svg"],
       date: "2025",
       featured: true
     },
@@ -119,21 +120,57 @@ export const RESUME = {
       title: "Planificador de Planes de Estudio",
       slug: "planificador-planes-estudio",
       description: "Herramienta web para la visualización y gestión de planes de estudio universitarios. Genera la malla curricular en formato de diagrama de flujo, muestra las sumillas (resumen y temario) y detalla la información de cada asignatura, como créditos y pre-requisitos.",
-      technologies: "Astro.js, HTML, CSS, JS, JSON",
-      mainImage: "",
+      technologies: "React, HTML, CSS, JS, JSON",
+      links: {
+        website: "https://tcasaniv.github.io/Curriculum-Planner-Pro/",
+        github: "https://github.com/tcasaniv/Curriculum-Planner-Pro"
+      },
+      // mainImage: "/images/projects/Placeholder.svg",
+      // gallery: ["/images/projects/Placeholder.svg", "/images/projects/Placeholder.svg"],
       gallery: [],
       date: "2024",
       featured: true
     },
     {
-      title: "Comparador de Imágenes (Diff-image)",
+      title: "Make a Session, Please!",
+      slug: "make-a-session-please",
+      description: "Paǵina web estática en Astro para generar una sesión de aprendizaje lista para imprimir o guardar en PDF desde Markdown.",
+      technologies: "Astro.js, HTML, CSS, JS, Markdown",
+      links: {
+        website: "https://tcasaniv.github.io/make-a-session-please/",
+        github: "https://github.com/tcasaniv/make-a-session-please"
+      },
+      // mainImage: "/images/projects/Placeholder.svg",
+      // gallery: ["/images/projects/Placeholder.svg", "/images/projects/Placeholder.svg"],
+      gallery: [],
+      date: "2025",
+      featured: true
+    },
+    {
+      title: "Plataforma Virtual de Soporte Docente",
+      slug: "plataforma-virtual-soporte-docente",
+      description: "Plataforma virtual con foco en herramientas digitales de soporte para mejorar el desempeño docente. Basada en la metodología TPACK, abarca herramientas digitales desde la planificación hasta la evaluación del aprendizaje.",
+      technologies: "React, HTML, CSS, JS, JSON, Markdown, Pollinations AI",
+      links: {
+        website: "https://plataforma-docente.netlify.app/",
+        github: "https://github.com/tcasaniv/plataforma-docente"
+      },
+      // mainImage: "/images/projects/Placeholder.svg",
+      // gallery: ["/images/projects/Placeholder.svg", "/images/projects/Placeholder.svg"],
+      gallery: [],
+      date: "2025",
+      featured: true
+    },
+    {
+      title: "Comparador de Imágenes (Diff my image)",
       slug: "comparador-imagenes-diff-image",
       description: "Software que compara dos imágenes para determinar su similitud estructural utilizando algoritmos como SSIM (Índice de Similitud Estructural) o MSE (Error Cuadrático Medio). Como resultado, genera una tercera imagen que resalta visualmente las diferencias encontradas.",
       technologies: "Python, OpenCV, Scikit-image, Flet",
       links: {
-        github: "https://github.com/tcasaniv"
+        github: "https://github.com/tcasaniv/Diff-my-image"
       },
-      mainImage: "",
+      // mainImage: "/images/projects/Placeholder.svg",
+      // gallery: ["/images/projects/Placeholder.svg", "/images/projects/Placeholder.svg"],
       gallery: [],
       date: "2025",
       featured: false
