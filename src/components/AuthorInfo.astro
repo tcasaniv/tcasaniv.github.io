@@ -1,5 +1,5 @@
 ---
-import { getEntryBySlug, getCollection } from "astro:content";
+import { getEntry, getCollection, render } from "astro:content";
 import Heading from "./Heading.astro";
 import { Image } from "astro:assets";
 
@@ -11,12 +11,12 @@ export interface Props {
 
 const { authorId, showPosts, headingLevel = 2 } = Astro.props;
 
-const entry = await getEntryBySlug("author", authorId);
+const entry = await getEntry("author", authorId);
 if (!entry) {
   throw new Error(`Author with id ${authorId} not found`);
 }
 
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 const { firstname, lastname, avatar, github, linkedin, twitter } = entry.data;
 const socials = [
   { name: "Github", url: github },
@@ -29,7 +29,7 @@ const authorPosts = posts
   .filter((post) => post.data.draft === false)
   .filter((post) => post.data.authors.includes(authorId))
   .map((post) => ({
-    url: `/blog/${post.slug}`,
+    url: `/blog/${post.id}`,
     data: post.data,
   }));
 ---

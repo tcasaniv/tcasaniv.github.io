@@ -1,11 +1,13 @@
 import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
 
 const author = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/author" }),
   schema: ({ image }) =>
     z.object({
       firstname: z.string(),
       lastname: z.string(),
-      avatar: image().refine((img) => img.width >= 96, {
+      avatar: image().refine((img) => typeof img === "string" || img.width >= 96, {
         message: "Author avatar image must be at least 96 pixels wide!",
       }),
       // socials
@@ -16,6 +18,7 @@ const author = defineCollection({
 });
 
 const blog = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
   // Type-check frontmatter using a schema
   schema: ({ image }) =>
     z.object({
@@ -39,6 +42,7 @@ const blog = defineCollection({
 });
 
 const categorie = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/categorie" }),
   schema: z.object({
     title: z.string(),
   }),

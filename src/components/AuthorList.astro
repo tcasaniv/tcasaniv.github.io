@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntryBySlug } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import AuthorInfo from "./AuthorInfo.astro";
 
 /**
@@ -26,7 +26,9 @@ const {
 let authorsFromProps = undefined;
 if (authors !== "all") {
   authorsFromProps = await Promise.all(
-    authors.map((author) => getEntryBySlug("author", author))
+    authors
+      .filter((author) => typeof author === "string" && author.trim() !== "")
+      .map((author) => getEntry("author", author))
   );
 }
 
@@ -38,13 +40,13 @@ const renderAuthors = authors === "all" ? allauthors : authorsFromProps;
   {
     !!renderAuthors &&
       renderAuthors
-        .filter((author) => !!author?.slug)
+        .filter((author) => !!author?.id)
         .map((author) => {
-          if (!author || !author.slug) return null;
+          if (!author || !author.id) return null;
           return (
             <li>
               <AuthorInfo
-                authorId={author.slug}
+                authorId={author.id}
                 showPosts={showPosts}
                 headingLevel={headingLevel}
               />

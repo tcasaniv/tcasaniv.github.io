@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntryBySlug } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 
 /**
  * This component expects either a list of categories as a prop, or an explicit 'all' to render all categories.
@@ -18,7 +18,9 @@ const { class: className = "", categories = [] } = Astro.props;
 let categoriesFromProps = undefined;
 if (categories !== "all") {
   categoriesFromProps = await Promise.all(
-    categories.map((categorie) => getEntryBySlug("categorie", categorie))
+    categories
+      .filter((categorie) => typeof categorie === "string" && categorie.trim() !== "")
+      .map((categorie) => getEntry("categorie", categorie))
   );
 }
 
@@ -36,7 +38,7 @@ let rendercategories = categories === "all" ? allcategories : categoriesFromProp
 
 if (categories === "all") {
   rendercategories = rendercategories?.concat({
-    slug: "uncategorized",
+    id: "uncategorized",
     data: { title: "Sin categoría" },
   } as unknown as (typeof allcategories)[number]);
 }
@@ -46,10 +48,10 @@ if (categories === "all") {
   {
     !!rendercategories &&
       rendercategories
-        .filter((categorie) => !!categorie?.slug && !!categorie?.data.title)
+        .filter((categorie) => !!categorie?.id && !!categorie?.data.title)
         .map((categorie) => (
           <li>
-            <a href={`/categories/${categorie?.slug}/`}>{categorie?.data.title}</a>
+            <a href={`/categories/${categorie?.id}/`}>{categorie?.data.title}</a>
           </li>
         ))
   }

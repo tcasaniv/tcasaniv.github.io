@@ -12,7 +12,7 @@ const { authors: authorIds } = data;
 
 const authorData = await getCollection("author");
 const authors = authorData
-  .filter((author) => authorIds.includes(author.slug))
+  .filter((author) => authorIds.includes(author.id))
   .map(
     (author) =>
       `${author.data.firstname}${

@@ -8,7 +8,7 @@ import { SITE_URL } from "./src/consts";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "hybrid",
+  output: "static",
   adapter: netlify({
     edgeMiddleware: false,
     imageCDN: false, // Blog hero image doesn't seem to work with this enabled

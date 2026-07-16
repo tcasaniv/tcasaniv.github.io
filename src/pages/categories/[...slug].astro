@@ -1,26 +1,26 @@
 ---
 import PostList from "../../components/PostList.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { type CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
   const categories = await getCollection("categorie");
   return categories
-    .filter((categorie) => (categorie.slug as string) !== "uncategorized")
+    .filter((categorie) => (categorie.id as string) !== "uncategorized")
     .map((categorie) => ({
-      params: { slug: categorie.slug },
+      params: { slug: categorie.id },
       props: categorie,
     }));
 }
 type Props = CollectionEntry<"categorie">;
 
 const categorie = Astro.props;
-const { Content } = await categorie.render();
+const { Content } = await render(categorie);
 
 const posts = await getCollection("blog");
 const categoriePosts = posts
   .filter((post) => post.data.draft === false)
-  .filter((post) => post.data.categories.includes(categorie.slug))
+  .filter((post) => post.data.categories.includes(categorie.id))
   .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
 
 const title = categorie.data.title;
