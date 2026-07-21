@@ -1,7 +1,8 @@
 ---
-import { getEntry, getCollection, render } from "astro:content";
+import { getEntry, render } from "astro:content";
 import Heading from "./Heading.astro";
 import { Image } from "astro:assets";
+import { getPublishedBlogPosts } from "../lib/blog";
 
 export interface Props {
   authorId: string;
@@ -24,9 +25,8 @@ const socials = [
   { name: "Twitter", url: twitter },
 ].filter((social) => social.url);
 
-const posts = await getCollection("blog");
+const posts = await getPublishedBlogPosts();
 const authorPosts = posts
-  .filter((post) => post.data.draft === false)
   .filter((post) => post.data.authors.includes(authorId))
   .map((post) => ({
     url: `/blog/${post.id}`,

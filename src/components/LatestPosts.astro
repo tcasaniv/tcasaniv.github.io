@@ -1,11 +1,8 @@
 ---
-import { getCollection } from "astro:content";
+import { getPublishedBlogPosts } from "../lib/blog";
 import PostList from "./PostList.astro";
 
-const posts = (await getCollection("blog"))
-  .filter((post) => post.data.draft === false)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+const posts = (await getPublishedBlogPosts()).slice(0, 3);
 ---
 
 <div>

@@ -1,11 +1,10 @@
 ---
 import PostList from "../../components/PostList.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
+import { getPublishedBlogPosts } from "../../lib/blog";
 
-const posts = await getCollection("blog");
+const posts = await getPublishedBlogPosts();
 const uncategorizedPost = posts
-  .filter((post) => post.data.draft === false)
   .filter((post) => post.data.categories.length === 0)
   .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
 

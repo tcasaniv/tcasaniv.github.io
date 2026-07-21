@@ -1,11 +1,10 @@
 ---
-import { getCollection } from "astro:content";
+import { getPublishedBlogPosts } from "../lib/blog";
 import Search from "./Search";
 import { RESUME } from "../data/resume";
 
 // Get Blog Posts
-const blogPosts = (await getCollection("blog"))
-  .filter((post) => post.data.draft === false);
+const blogPosts = await getPublishedBlogPosts();
 
 // Transform Blog Posts to SearchItems
 const blogItems = blogPosts.map(post => ({

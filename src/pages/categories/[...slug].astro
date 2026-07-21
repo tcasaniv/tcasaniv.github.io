@@ -2,6 +2,7 @@
 import PostList from "../../components/PostList.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { type CollectionEntry, getCollection, render } from "astro:content";
+import { getPublishedBlogPosts } from "../../lib/blog";
 
 export async function getStaticPaths() {
   const categories = await getCollection("categorie");
@@ -17,9 +18,8 @@ type Props = CollectionEntry<"categorie">;
 const categorie = Astro.props;
 const { Content } = await render(categorie);
 
-const posts = await getCollection("blog");
+const posts = await getPublishedBlogPosts();
 const categoriePosts = posts
-  .filter((post) => post.data.draft === false)
   .filter((post) => post.data.categories.includes(categorie.id))
   .sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
 

@@ -2,9 +2,9 @@
 import HeaderLink from "./HeaderLink.astro";
 import DarkModeToggle from "./DarkModeToggle.astro";
 import { SITE_TITLE } from "../consts";
-import { getCollection } from "astro:content";
+import { getPublishedBlogPosts } from "../lib/blog";
 
-const blogPosts = (await getCollection("blog")).filter((post) => post.data.draft === false);
+const blogPosts = await getPublishedBlogPosts();
 const hasBlogPosts = blogPosts.length > 0;
 ---
 
