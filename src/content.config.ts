@@ -18,7 +18,7 @@ const author = defineCollection({
 });
 
 const blog = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/blog" }),
   // Type-check frontmatter using a schema
   schema: ({ image }) =>
     z.object({
