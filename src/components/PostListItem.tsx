@@ -1,7 +1,16 @@
-import type { CollectionEntry } from "astro:content";
+type PostData = {
+  id: string;
+  data: {
+    title: string;
+    description: string;
+    pubDate: Date;
+    authors: string[];
+    categories: string[];
+  };
+};
 
-export const PostListItem = ({ post }: { post: CollectionEntry<"blog"> }) => {
-  const { data, slug } = post;
+export const PostListItem = ({ post }: { post: PostData }) => {
+  const { data, id } = post;
   const { title, description, pubDate, authors, categories } = data;
   const categoriesList = categories.length > 0 ? categories.join(", ") : "sin categoría";
   return (
@@ -9,7 +18,7 @@ export const PostListItem = ({ post }: { post: CollectionEntry<"blog"> }) => {
       <h2 class="mb-0.5 mt-0 text-xl">
         <a
           class="text-link no-underline hover:underline"
-          href={`/blog/${slug}/`}
+          href={`/blog/${id}/`}
         >
           {title}
         </a>
