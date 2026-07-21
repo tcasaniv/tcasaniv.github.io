@@ -2,6 +2,10 @@
 import HeaderLink from "./HeaderLink.astro";
 import DarkModeToggle from "./DarkModeToggle.astro";
 import { SITE_TITLE } from "../consts";
+import { getCollection } from "astro:content";
+
+const blogPosts = (await getCollection("blog")).filter((post) => post.data.draft === false);
+const hasBlogPosts = blogPosts.length > 0;
 ---
 
 <header class="site-header bg-[var(--bg-header)] text-[var(--text-header)] py-4 shadow-md sticky top-0 z-50">
@@ -12,7 +16,7 @@ import { SITE_TITLE } from "../consts";
 
     <nav class="flex items-center gap-4 mt-2 sm:mt-0">
       <HeaderLink href="/" class="text-white hover:underline">Inicio</HeaderLink>
-      <HeaderLink href="/blog" class="text-white hover:underline">Blog</HeaderLink>
+      {hasBlogPosts && <HeaderLink href="/blog" class="text-white hover:underline">Blog</HeaderLink>}
       <HeaderLink href="/projects" class="text-white hover:underline">Proyectos</HeaderLink>
       
       <div class="flex items-center gap-2 border-l pl-4 border-gray-600">
